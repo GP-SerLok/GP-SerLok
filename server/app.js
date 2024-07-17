@@ -22,31 +22,33 @@ app.get("/", (req, res) => {
 });
 app.post("/login");
 app.post("/login/google", userController.googleLogin);
-
+let usersOnline = [];
 io.on("connection", (socket) => {
   // console.log('welcome to socket ', socket.id);
   socket.emit("message", "hello dunia ku");
 
-  socket.on("count", (args) => {
-    io.emit("result", args);
-  });
-
-  if (socket.handshake.auth.username) {
-    users.push({ id: socket.id, username: socket.handshake.auth.username });
+  if (socket.handshake.auth.name) {
+    let userFound = false;
+    usersOnline.forEach((user) => {
+      if (user.name === socket.handshake.auth.name) {
+        userFound = true;
+        user.name = socket.handshake.auth.name;
+        user.id = socket.id;
+        user.position = socket.handshake.auth.position;
+      }
+    });
+    if (!userFound) {
+      usersOnline.push({
+        id: socket.id,
+        name: socket.handshake.auth.name,
+        position: socket.handshake.auth.position,
+      });
+    }
+    socket.emit("online:users", usersOnline);
+    console.log(usersOnline);
   }
 
-  socket.emit("online:users", users);
-
-  socket.on("disconnect", () => {
-    users = users.filter((item) => item.id !== socket.id);
-    socket.emit("online:users", users);
-  });
-
-  socket.on("message", (args) => {
-    io.emit("new:message", args);
-  });
-
-  console.log(users);
+  //   console.log(usersOnline);
 });
 
 httpServer.listen(port, () => {
