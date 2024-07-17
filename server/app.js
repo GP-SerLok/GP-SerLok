@@ -47,6 +47,14 @@ io.on("connection", (socket) => {
       });
     }
     socket.emit("online:users", usersOnline);
+    socket.on("update:location", (args) => {
+      usersOnline.forEach((user) => {
+        if (user.name === args.name) {
+          user.position = args.position;
+          socket.emit("online:users", usersOnline);
+        }
+      });
+    });
     console.log(usersOnline);
   }
 
