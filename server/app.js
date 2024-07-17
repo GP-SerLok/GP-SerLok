@@ -51,7 +51,8 @@ io.on("connection", (socket) => {
       usersOnline.forEach((user) => {
         if (user.name === args.name) {
           user.position = args.position;
-          socket.emit("online:users", usersOnline);
+          //   socket.emit("online:users", usersOnline);
+          io.emit("online:users", usersOnline);
         }
       });
     });
