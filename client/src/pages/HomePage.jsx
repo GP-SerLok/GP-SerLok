@@ -2,13 +2,14 @@ import { useEffect } from "react";
 import MapComponent from "../components/MapComponent";
 import socket from "../helpers/socket";
 import { useState } from "react";
+import { useContext } from "react";
+import { UsersContext } from "../contexts/UsersContext";
 
 export default function HomePage() {
-  const [users, setUsers] = useState([]);
+  const { users, updateData } = useContext(UsersContext);
 
   socket.on("online:users", (args) => {
-    console.log(args);
-    setUsers(args);
+    updateData(args);
   });
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -31,7 +32,6 @@ export default function HomePage() {
       position.coords.longitude,
       "<<<<NEW LOCATION"
     );
-    // doSomething(position.coords.latitude, position.coords.longitude);
   });
   return (
     <>
