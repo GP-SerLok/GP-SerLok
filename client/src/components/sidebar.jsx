@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function Sidebar() {
     return (
         <>
@@ -23,7 +25,7 @@ export default function Sidebar() {
                         </li>
                     </ul>
                     <ul className="menu rounded-box flex-col-reverse">
-                        <li><a>Maps</a></li>
+                        <li><Link to={'/login'} onClick={() => localStorage.clear()}>Logout</Link></li>
                     </ul>
                 </div>
             </div>
