@@ -2,9 +2,11 @@ import { Link } from "react-router-dom";
 import { HiOutlineMapPin } from "react-icons/hi2";
 import { MdPeopleOutline } from "react-icons/md";
 import { IoLogOutOutline } from "react-icons/io5";
+import { useContext } from "react";
+import { UsersContext } from "../contexts/UsersContext";
 
 export default function Sidebar() {
-
+    const { users } = useContext(UsersContext)
 
     return (
         <>
@@ -23,11 +25,20 @@ export default function Sidebar() {
                                 <details open>
                                     <summary className="text-lg py-4"><MdPeopleOutline /> Friend List</summary>
                                     <ul>
-                                        <div className="avatar online mt-3">
-                                            <div className="w-10 rounded-xl">
-                                                <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" alt="Friend" />
-                                            </div>
-                                        </div><br />
+                                        {users.map((el, i) => {
+                                            return (
+                                                <div className="flex items-center space-x-4 mt-3" key={i}>
+                                                    <div className="avatar online">
+                                                        <div className="w-10 rounded-xl">
+                                                            <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" alt="Friend" />
+                                                        </div>
+                                                    </div>
+                                                    <div className="text-md">
+                                                        {el.name}
+                                                    </div>
+                                                </div>
+                                            )
+                                        })}
                                     </ul>
                                 </details>
                             </li>
