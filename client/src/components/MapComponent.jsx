@@ -26,9 +26,7 @@ function MapComponent({ users }) {
           {users.map((el, i) => {
             return (
               <Marker key={i} position={el.position}>
-                <Popup>
-                  A pretty CSS3 popup. <br /> Easily customizable.
-                </Popup>
+                <Popup>{el.name}</Popup>
               </Marker>
             );
           })}
