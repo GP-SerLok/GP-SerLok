@@ -21,6 +21,18 @@ export default function HomePage() {
       socket.disconnect().connect();
     });
   }, []);
+  navigator.geolocation.watchPosition((position) => {
+    socket.emit("update:location", {
+      name: localStorage.getItem("name"),
+      position: [position.coords.latitude, position.coords.longitude],
+    });
+    console.log(
+      position.coords.latitude,
+      position.coords.longitude,
+      "<<<<NEW LOCATION"
+    );
+    // doSomething(position.coords.latitude, position.coords.longitude);
+  });
   return (
     <>
       <MapComponent users={users} />
