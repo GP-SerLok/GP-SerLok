@@ -4,8 +4,11 @@ import socket from "../helpers/socket";
 import { useState } from "react";
 
 export default function HomePage() {
+  const [users, setUsers] = useState([]);
+
   socket.on("online:users", (args) => {
     console.log(args);
+    setUsers(args);
   });
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -20,7 +23,7 @@ export default function HomePage() {
   }, []);
   return (
     <>
-      <MapComponent />
+      <MapComponent users={users} />
     </>
   );
 }

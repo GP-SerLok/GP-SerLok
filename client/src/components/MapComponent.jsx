@@ -9,7 +9,7 @@ import {
   useMap,
 } from "react-leaflet";
 
-function MapComponent() {
+function MapComponent({ users }) {
   const [position, setPosition] = useState();
   navigator.geolocation.watchPosition((position) => {
     setPosition([position.coords.latitude, position.coords.longitude]);
@@ -23,11 +23,15 @@ function MapComponent() {
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          <Marker position={position}>
-            <Popup>
-              A pretty CSS3 popup. <br /> Easily customizable.
-            </Popup>
-          </Marker>
+          {users.map((el, i) => {
+            return (
+              <Marker key={i} position={el.position}>
+                <Popup>
+                  A pretty CSS3 popup. <br /> Easily customizable.
+                </Popup>
+              </Marker>
+            );
+          })}
         </MapContainer>
       )}
     </>
