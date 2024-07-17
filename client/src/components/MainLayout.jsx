@@ -4,8 +4,12 @@ import Sidebar from "./sidebar";
 export default function MainLayout() {
     return (
         <>
-            <Sidebar />
-            <Outlet />
+            <div style={{ display: 'flex' }}>
+                <Sidebar />
+                <div>
+                    <Outlet />
+                </div>
+            </div>
         </>
     )
 }
