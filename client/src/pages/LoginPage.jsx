@@ -12,9 +12,12 @@ export default function LoginPage() {
       callback: async (response) => {
         const googleToken = response.credential;
         console.log("Encoded JWT ID token: " + response.credential);
-        const { data } = await axios.post("http://3.107.46.1/login/google", {
-          googleToken,
-        });
+        const { data } = await axios.post(
+          "https://serlok.daffazuhdii.my.id/login/google",
+          {
+            googleToken,
+          }
+        );
         localStorage.setItem("access_token", data.access_token);
         localStorage.setItem("name", data.name);
         navigate("/");
