@@ -19,11 +19,11 @@ export default function Sidebar() {
                     <div className="flex flex-col h-screen">
                         <ul className="menu rounded-box w-56 flex-grow">
                             <li>
-                                <a className="text-lg py-4"><HiOutlineMapPin /> Maps</a>
+                                <Link to={'/'} className="text-lg py-4"><HiOutlineMapPin /> Maps</Link>
                             </li>
                             <li className="mb-36">
                                 <details open>
-                                    <summary className="text-lg py-4"><MdPeopleOutline /> Friend List</summary>
+                                    <summary className="text-lg py-4"><MdPeopleOutline /> Online Users</summary>
                                     <ul>
                                         {users.map((el, i) => {
                                             return (
