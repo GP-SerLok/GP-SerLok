@@ -36,7 +36,10 @@ export default function LoginPage() {
           <div className="text-center lg:text-left">
             <h1 className="text-5xl font-bold">SerLok</h1>
             <p className="py-6">
-              Aplikasi live location adalah alat yang memungkinkan pengguna untuk membagikan lokasi mereka secara real-time dengan orang lain. Fitur ini dapat ditemukan di berbagai aplikasi, seperti aplikasi pesan instan, aplikasi peta, dan aplikasi keamanan pribadi
+              Aplikasi live location adalah alat yang memungkinkan pengguna
+              untuk membagikan lokasi mereka secara real-time dengan orang lain.
+              Fitur ini dapat ditemukan di berbagai aplikasi, seperti aplikasi
+              pesan instan, aplikasi peta, dan aplikasi keamanan pribadi
             </p>
             <h5 className="text-3xl font-bold">Login now!</h5>
             <div className="flex justify-left mt-3" id="buttonDiv"></div>
