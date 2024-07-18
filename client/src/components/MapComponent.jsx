@@ -18,7 +18,7 @@ function MapComponent({ users }) {
 
   // aturan marker
   const markerIcon = new L.Icon({
-    iconUrl: "../../public/redMarker.png",
+    iconUrl: "/redMarker.png",
     iconSize: [40, 40],
     iconAnchor: [17, 30],
     popupAnchor: [1, -30],
