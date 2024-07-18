@@ -9,6 +9,7 @@ import {
   useMap,
 } from "react-leaflet";
 import L from "leaflet";
+import ReactLeafletDriftMarker from "react-leaflet-drift-marker";
 
 function MapComponent({ users }) {
   const [position, setPosition] = useState();
@@ -34,14 +35,32 @@ function MapComponent({ users }) {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
           {users.map((el, i) =>
+            // name === el.name ? (
+            //   <Marker key={i} position={el.position} icon={markerIcon}>
+            //     <Popup>{el.name}</Popup>
+            //   </Marker>
+            // ) : (
+            //   <Marker key={i} position={el.position}>
+            //     <Popup>{el.name}</Popup>
+            //   </Marker>
+            // )
             name === el.name ? (
-              <Marker key={i} position={el.position} icon={markerIcon}>
+              <ReactLeafletDriftMarker
+                key={i}
+                position={el.position}
+                duration={1000}
+                icon={markerIcon}
+              >
                 <Popup>{el.name}</Popup>
-              </Marker>
+              </ReactLeafletDriftMarker>
             ) : (
-              <Marker key={i} position={el.position}>
+              <ReactLeafletDriftMarker
+                key={i}
+                position={el.position}
+                duration={1000}
+              >
                 <Popup>{el.name}</Popup>
-              </Marker>
+              </ReactLeafletDriftMarker>
             )
           )}
         </MapContainer>
