@@ -1,4 +1,4 @@
 import { io } from "socket.io-client";
-const socket = io("http://3.107.46.1");
+const socket = io("https://serlok.daffazuhdii.my.id");
 
 export default socket;
