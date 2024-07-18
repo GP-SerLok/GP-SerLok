@@ -56,7 +56,15 @@ io.on("connection", (socket) => {
         }
       });
     });
-    console.log(usersOnline);
+    socket.on("disconnect", (reason) => {
+      // ...
+      console.log(usersOnline, "list user");
+      usersOnline = usersOnline.filter(
+        (user) => user.name !== socket.handshake.auth.name
+      );
+      io.emit("online:users", usersOnline);
+      console.log(socket.handshake.auth.name, " disconnected", usersOnline);
+    });
   }
 
   //   console.log(usersOnline);
