@@ -1,4 +1,4 @@
-# P2-Challenge-1
+# GP-P2-SerLok
 
 ## LINK DEPLOY
 
